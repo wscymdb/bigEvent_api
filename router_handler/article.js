@@ -27,7 +27,7 @@ exports.getArtlist = (req, res) => {
   // 数据库分页查询
   // console.log(req.query);
   //  const sqlStr = 'SELECT id,title,content,cover_img,pub_date,state,is_delete,cate_id,author_id FROM ev_articles WHERE is_delete = 0 ORDER BY id LIMIT ?,? ';
-   const sqlStr = 'SELECT ev_articles.id,ev_articles.title,ev_articles.content,ev_articles.cover_img,ev_articles.pub_date,ev_articles.state,ev_articles.is_delete,ev_articles.cate_id,ev_articles.author_id,ev_article_cate.name FROM ev_articles LEFT JOIN ev_article_cate ON ev_articles.cate_id = ev_article_cate.id ORDER BY ev_articles.id LIMIT ?,?';
+   const sqlStr = 'SELECT ev_articles.id,ev_articles.title,ev_articles.content,ev_articles.cover_img,ev_articles.pub_date,ev_articles.state,ev_articles.is_delete,ev_articles.cate_id,ev_articles.author_id,ev_article_cate.name FROM ev_articles LEFT JOIN ev_article_cate ON ev_articles.cate_id = ev_article_cate.id WHERE ev_articles.is_delete =0 ORDER BY ev_articles.id LIMIT ?,?';
   pool.query(sqlStr, [req.query.pagenum, req.query.pagesize], (err, result) => {
     if (err) return res.cc(err);
 
